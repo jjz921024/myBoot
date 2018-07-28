@@ -22,7 +22,7 @@ public class ControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        mvc = MockMvcBuilders.standaloneSetup(new UserController()).build();
+        mvc = MockMvcBuilders.standaloneSetup(new BookController()).build();
     }
 
     @Test

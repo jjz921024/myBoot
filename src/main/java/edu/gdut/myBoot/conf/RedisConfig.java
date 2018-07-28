@@ -21,8 +21,8 @@ import java.lang.reflect.Method;
  * Redis服务要允许远程连接
  * Created by Jun on 2018/7/13.
  */
-@Configuration
-@EnableCaching
+//@Configuration
+//@EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
     @Bean
     public KeyGenerator keyGenerator(){

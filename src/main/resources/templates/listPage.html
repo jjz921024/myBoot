@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+	<meta charset="UTF-8"/>
+	<title>myBoot</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+
+</head>
+
+<body class="container">
+    <br/>
+        <h1>列表</h1>
+    <br/><br/>
+<div class="with:80%">
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th>#</th>
+			<th>Book Name</th>
+			<th>Price</th>
+			<th>Quantity</th>
+            <th>Description</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		</thead>
+
+		<tbody id="list">
+        <!--<tr id="list" >
+            <th scope="row" id="id"></th>
+            <td id="name"></td>
+            <td id="price"></td>
+            <td id="quantity"></td>
+            <td id="description"></td>
+            <td id="edit"><a th:href="@{/toEdit(id=${book.id})}">edit</a></td>
+            <td id="delete"><a th:href="@{/delete(id=${book.id})}">delete</a></td>
+		</tr>-->
+		</tbody>
+
+	</table>
+</div>
+<div class="form-group">
+	<div class="col-sm-2 control-label">
+        <a th:href="@{/toAdd}" class="btn btn-info">添加</a>
+	</div>
+</div>
+
+
+<script type = "text/javascript">
+	window.onload = function() {
+		$.ajax({
+			async: true,
+			type: "GET",
+			dataType: 'json',
+			url: "/v1/api/book",
+			timeout: 3000,
+			contentType: "application/json; charset=utf-8",
+			success: function(data){
+                var b = data.books;
+				for (var index in b){
+					$("#list").append("<tr>" +
+                        "<td>" + b[index].id + "</td>" +
+                        "<td>" + b[index].name + "</td>" +
+                        "<td>" + b[index].price + "</td>" +
+                        "<td>" + b[index].quantity + "</td>" +
+                        "<td>" + b[index].description + "</td>" +
+                        '<td><a href="/toEdit/' + b[index].id + '">edit</a></td>' +
+                        '<td><a href="/delete/book/' + b[index].id + '">delete</a></td>' +
+                        "</tr>");
+				}
+			}
+		});
+	}
+</script>
+
+</body>
+</html>

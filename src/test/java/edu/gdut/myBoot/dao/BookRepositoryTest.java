@@ -1,12 +1,11 @@
 package edu.gdut.myBoot.dao;
 
 import com.alibaba.fastjson.JSON;
-import edu.gdut.myBoot.polo.User;
+import edu.gdut.myBoot.polo.Book;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,14 +19,14 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class UserRepositoryTest {
+public class BookRepositoryTest {
 
     @Autowired
-    private UserRepository userRepository;
+    private BookRepository bookRepository;
 
     @Test
     public void test() {
-        List<User> all = userRepository.findAll();
+        List<Book> all = bookRepository.findAll();
         System.out.println(all.get(0).toString());
         System.out.println(JSON.toJSON(all));
     }
@@ -40,12 +39,12 @@ public class UserRepositoryTest {
         Pageable pageable = new PageRequest(page, size, sort);
 
         //todo: 没有分页
-        Page<User> page1 = userRepository.findAll(pageable);
-        List<User> content1 = page1.getContent();
+        Page<Book> page1 = bookRepository.findAll(pageable);
+        List<Book> content1 = page1.getContent();
         System.out.println(content1.toString());
 
-        Page<User> page2 = userRepository.findAll(pageable.next());
-        List<User> content = page2.getContent();
+        Page<Book> page2 = bookRepository.findAll(pageable.next());
+        List<Book> content = page2.getContent();
         System.out.println(content.toString());
     }
 }
