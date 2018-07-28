@@ -1,0 +1,24 @@
+version: '2'
+
+network:
+  myboot:
+
+services:
+  tomcat:
+    build: tomcat
+    network:
+      - myboot
+    depends_on:
+      - db
+    ports:
+      - "8888:8080"
+
+  db:
+    image: "hub.c.163.com/library/mysql:latest"
+    networks:
+      - myboot
+    environment:
+      MYSQL_ROOT_PASSWORD: passwd
+      MYSQL_DATABASE: test
+    ports:
+      - "3306:3306"
