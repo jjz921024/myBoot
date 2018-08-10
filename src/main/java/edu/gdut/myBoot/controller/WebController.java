@@ -28,15 +28,15 @@ public class WebController {
      */
     @GetMapping("/")
     public String index() {
-        return "listPage";
+        return "redirect:/book";
     }
 
-    /*@RequestMapping("/list")
+    @GetMapping("/book")
     public String list(Model model) {
         List<Book> books = bookService.getAllBook();
         model.addAttribute("books", books);
-        return "list";
-    }*/
+        return "listPage";
+    }
 
     @GetMapping("/toAdd")
     public String addPage() {
@@ -51,7 +51,7 @@ public class WebController {
             return "addPage";
         }
         bookService.addBook(book);
-        return "listPage";
+        return "redirect:/book";
     }
 
     @GetMapping("/toEdit/{id}")
@@ -69,13 +69,13 @@ public class WebController {
             return "editPage";
         }
         bookService.updateBookById(book.getId(), book);
-        return "listPage";
+        return "redirect:/book";
     }
 
     @GetMapping("/delete/book/{id}")
     public String delete(@PathVariable("id") long id) {
         bookService.deleteBookById(id);
-        return "listPage";
+        return "redirect:/book";
     }
 
     private HashMap errorInfo(BindingResult bindingResult) {

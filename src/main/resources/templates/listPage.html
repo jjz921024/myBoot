@@ -27,15 +27,15 @@
 		</thead>
 
 		<tbody id="list">
-        <!--<tr id="list" >
-            <th scope="row" id="id"></th>
-            <td id="name"></td>
-            <td id="price"></td>
-            <td id="quantity"></td>
-            <td id="description"></td>
-            <td id="edit"><a th:href="@{/toEdit(id=${book.id})}">edit</a></td>
-            <td id="delete"><a th:href="@{/delete(id=${book.id})}">delete</a></td>
-		</tr>-->
+			<tr th:each="book:${books}">
+				<th scope="row" id="id" th:text="${book.id}"></th>
+				<td id="name" th:text="${book.name}"></td>
+				<td id="price" th:text="${book.price}"></td>
+				<td id="quantity" th:text="${book.quantity}"></td>
+				<td id="description" th:text="${book.description}"></td>
+				<td id="edit"><a th:href="@{/toEdit/{id}(id=${book.id})}">edit</a></td>
+				<td id="delete"><a th:href="@{/delete/book/{id}(id=${book.id})}">delete</a></td>
+			</tr>
 		</tbody>
 
 	</table>
@@ -47,32 +47,6 @@
 </div>
 
 
-<script type = "text/javascript">
-	window.onload = function() {
-		$.ajax({
-			async: true,
-			type: "GET",
-			dataType: 'json',
-			url: "/myboot/v1/api/book",
-			timeout: 3000,
-			contentType: "application/json; charset=utf-8",
-			success: function(data){
-                var b = data.books;
-				for (var index in b){
-					$("#list").append("<tr>" +
-                        "<td>" + b[index].id + "</td>" +
-                        "<td>" + b[index].name + "</td>" +
-                        "<td>" + b[index].price + "</td>" +
-                        "<td>" + b[index].quantity + "</td>" +
-                        "<td>" + b[index].description + "</td>" +
-                        '<td><a href="/myboot/toEdit/' + b[index].id + '">edit</a></td>' +
-                        '<td><a href="/myboot/delete/book/' + b[index].id + '">delete</a></td>' +
-                        "</tr>");
-				}
-			}
-		});
-	}
-</script>
 
 </body>
 </html>
