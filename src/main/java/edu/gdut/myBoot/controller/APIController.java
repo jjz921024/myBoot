@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Jun on 2018/7/11.
  */
 @RestController
-public class BookController {
+public class APIController {
 
     @Autowired
     private BookService bookService;

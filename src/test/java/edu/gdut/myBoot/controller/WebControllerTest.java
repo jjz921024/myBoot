@@ -1,6 +1,7 @@
 package edu.gdut.myBoot.controller;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.http.MediaType;
@@ -12,27 +13,28 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 /**
  * Created by Jun on 2018/7/5.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-public class ControllerTest {
-    private MockMvc mvc;
+public class WebControllerTest {
+    private static MockMvc mvc;
 
-    @Before
-    public void setUp() throws Exception {
-        mvc = MockMvcBuilders.standaloneSetup(new BookController()).build();
+    @BeforeClass
+    public static void setUp() throws Exception {
+        mvc = MockMvcBuilders.standaloneSetup(new WebController()).build();
     }
 
     @Test
-    public void getHello() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/")
+    public void testHello() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/book")
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
     }
-
 
 }

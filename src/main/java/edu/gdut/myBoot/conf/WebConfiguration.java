@@ -11,15 +11,16 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class WebConfiguration {
-    /**
-     * 这个过滤器的作用是什么
-     * @return
-     */
+
     @Bean
     public RemoteIpFilter remoteIpFilter() {
         return new RemoteIpFilter();
     }
 
+    /**
+     * 用来注册过滤器，并可为过滤器进行排序
+     * @return
+     */
     @Bean
     public FilterRegistrationBean testFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();

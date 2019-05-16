@@ -6,6 +6,7 @@ import edu.gdut.myBoot.dao.BookRepository;
 import edu.gdut.myBoot.polo.Book;
 import edu.gdut.myBoot.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Cacheable("books")
     public Book findBookById(long id) {
         return bookRepository.findOne(id);
     }

@@ -6,7 +6,7 @@
 	<groupId>edu.gdut</groupId>
 	<artifactId>myBoot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>myBoot</name>
 	<description>Demo project for Spring Boot</description>
@@ -49,11 +49,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!--<dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>-->
+			<scope>provided</scope> <!--jar包要包含tomcat-->
+		</dependency>
 
         <!--spring data jpa-->
 		<dependency>
@@ -95,6 +96,15 @@
 			<version>${fastjson.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+			<scope>provided</scope>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -108,6 +118,13 @@
 					<!--jar包能直接执行，或注册为linux下服务-->
 					<executable>true</executable>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

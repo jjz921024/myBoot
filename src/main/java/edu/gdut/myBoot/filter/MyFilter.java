@@ -10,19 +10,17 @@ import java.io.IOException;
 public class MyFilter implements Filter {
     @Override
     public void destroy() {
-        // TODO Auto-generated method stub
     }
 
     @Override
-    public void doFilter(ServletRequest srequest, ServletResponse sresponse, FilterChain filterChain)
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
-        // TODO Auto-generated method stub
-        HttpServletRequest request = (HttpServletRequest) srequest;
-        System.out.println("this is MyFilter,url :"+request.getRequestURI());
-        filterChain.doFilter(srequest, sresponse);
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        System.out.println("this is MyFilter,url :" + httpServletRequest.getRequestURI());
+        filterChain.doFilter(request, response);
     }
+
     @Override
     public void init(FilterConfig arg0) throws ServletException {
-        // TODO Auto-generated method stub
     }
 }

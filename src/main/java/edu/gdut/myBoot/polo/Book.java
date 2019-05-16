@@ -1,6 +1,9 @@
 package edu.gdut.myBoot.polo;
 
-import org.springframework.format.annotation.NumberFormat;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,13 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
  * Created by Jun on 2018/7/10.
  */
 @Entity
+@NoArgsConstructor
+@Setter
+@Getter
 public class Book implements Serializable{
     private static final long serialVersionUID = 1L;
 
@@ -36,53 +41,10 @@ public class Book implements Serializable{
     @Column
     private String description;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Book(String name, float price, int quantity, String description) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
-    }
-
-    public Book() {
     }
 }
